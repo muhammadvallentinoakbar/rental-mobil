@@ -32,14 +32,18 @@ class MobilController extends Controller
     }
 
     public function update(Request $request, Mobil $mobil)
-    {
-        $mobil->update($request->all());
-        return redirect('/mobil');
-    }
+{
+    $mobil->update($request->all());
+
+    return redirect('/mobil')
+        ->with('success', '✅ Data mobil berhasil diperbarui!');
+}
 
     public function destroy(Mobil $mobil)
-    {
-        $mobil->delete();
-        return redirect('/mobil');
-    }
+{
+    $mobil->delete();
+
+    return redirect('/mobil')
+        ->with('success', 'Data mobil berhasil dihapus!');
+}
 }
