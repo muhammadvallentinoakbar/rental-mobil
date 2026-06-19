@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 class MobilController extends Controller
 {
     public function index()
-{
-    return 'Controller OK';
-}
+    {
+        $mobils = Mobil::all();
+        return view('mobil.index', compact('mobils'));
+    }
 
     public function create()
     {
