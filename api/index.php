@@ -1,21 +1,26 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
-$app = require_once __DIR__ . '/../bootstrap/app.php';
+use Illuminate\Http\Request;
 
-try {
-    $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-    $request = Illuminate\Http\Request::capture();
-    $response = $kernel->handle($request);
+// Vercel's filesystem is read-only except /tmp.
+// Point Laravel's storage path there and pre-create the folders it needs.
+$storagePath = '/tmp/storage';
 
-    echo "STATUS: " . $response->getStatusCode() . "<br>";
-    echo "CONTENT LENGTH: " . strlen($response->getContent()) . "<br>";
-    echo "CONTENT: " . htmlspecialchars($response->getContent());
+putenv("LARAVEL_STORAGE_PATH={$storagePath}");
+$_ENV['LARAVEL_STORAGE_PATH'] = $storagePath;
+$_SERVER['LARAVEL_STORAGE_PATH'] = $storagePath;
 
-} catch (\Throwable $e) {
-    echo "ERROR CAUGHT:<br>";
-    echo "Message: " . $e->getMessage() . "<br>";
-    echo "File: " . $e->getFile() . "<br>";
-    echo "Line: " . $e->getLine() . "<br>";
-    echo "<pre>" . $e->getTraceAsString() . "</pre>";
+foreach ([
+    $storagePath . '/framework/cache/data',
+    $storagePath . '/framework/sessions',
+    $storagePath . '/framework/testing',
+    $storagePath . '/framework/views',
+    $storagePath . '/logs',
+    $storagePath . '/app/public',
+] as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
 }
+
+require __DIR__ . '/../public/index.php';
