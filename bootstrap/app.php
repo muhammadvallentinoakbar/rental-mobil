@@ -10,9 +10,12 @@
             commands: __DIR__.'/../routes/console.php',
             health: '/up',
         )
-        ->withMiddleware(function (Middleware $middleware): void {
-            //
-        })
+        ->withMiddleware(function ($middleware) {
+    $middleware->validateCsrfTokens(except: [
+        'mobil',
+        'mobil/*',
+    ]);
+})
         ->withExceptions(function (Exceptions $exceptions): void {
             //
         })->create();

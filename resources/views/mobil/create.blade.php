@@ -180,7 +180,7 @@
             <p>Lengkapi data unit armada baru di bawah ini.</p>
         </div>
 
-        <form action="{{ route('mobil.store') }}" method="POST">
+        <form action="/mobil-test" method="POST">
     @csrf
 
     <div class="field">
