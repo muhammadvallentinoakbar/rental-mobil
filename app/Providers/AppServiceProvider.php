@@ -7,21 +7,17 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        if (env('APP_ENV') === 'production' || isset($_SERVER['VERCEL'])) {
-            URL::forceScheme('https');
+        URL::forceScheme('https');
+
+        if (app()->bound('path.storage')) {
+            app()->useStoragePath('/tmp/storage');
         }
     }
 }
