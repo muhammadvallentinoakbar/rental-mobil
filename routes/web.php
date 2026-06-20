@@ -15,5 +15,13 @@ Route::get('/test-session', function () {
         'all_session' => session()->all(),
     ]);
 });
+Route::get('/csrf-test', function () {
+    return [
+        'session_id' => session()->getId(),
+        'csrf_token' => csrf_token(),
+        'session' => session()->all(),
+        'cookies' => request()->cookies->all(),
+    ];
+});
 
 Route::resource('mobil', MobilController::class);
