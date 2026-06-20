@@ -26,7 +26,5 @@ Route::get('/csrf-test', function () {
 Route::post('/mobil-test', function () {
     dd(request()->all());
 });
-Route::post('/mobil-test', function () {
-    dd(request()->all());
-});
+
 Route::resource('mobil', MobilController::class);
