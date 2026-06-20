@@ -180,46 +180,73 @@
             <p>Lengkapi data unit armada baru di bawah ini.</p>
         </div>
 
-        <form action="/mobil" method="POST">
-            @csrf
+        <form action="{{ route('mobil.store') }}" method="POST">
+    @csrf
 
-            <div class="field">
-                <label for="nama_mobil">Nama Mobil</label>
-                <input type="text" id="nama_mobil" name="nama_mobil" required>
-            </div>
+    <div class="field">
+        <label for="nama_mobil">Nama Mobil</label>
+        <input
+            type="text"
+            id="nama_mobil"
+            name="nama_mobil"
+            required
+        >
+    </div>
 
-            <div class="field">
-                <label for="merk">Merk</label>
-                <input type="text" id="merk" name="merk" required>
-            </div>
+    <div class="field">
+        <label for="merk">Merk</label>
+        <input
+            type="text"
+            id="merk"
+            name="merk"
+            required
+        >
+    </div>
 
-            <div class="field field-row">
-                <div>
-                    <label for="tahun">Tahun</label>
-                    <input type="number" id="tahun" name="tahun" required>
-                </div>
+    <div class="field field-row">
+        <div>
+            <label for="tahun">Tahun</label>
+            <input
+                type="number"
+                id="tahun"
+                name="tahun"
+                required
+            >
+        </div>
 
-                <div>
-                    <label for="harga_sewa">Harga Sewa (Rp)</label>
-                    <input type="number" id="harga_sewa" name="harga_sewa" required>
-                </div>
-            </div>
+        <div>
+            <label for="harga_sewa">Harga Sewa (Rp)</label>
+            <input
+                type="number"
+                id="harga_sewa"
+                name="harga_sewa"
+                required
+            >
+        </div>
+    </div>
 
-            <div class="field">
-                <label for="status">Status Ketersediaan</label>
-                <select id="status" name="status">
-                    <option value="Tersedia">Tersedia</option>
-                    <option value="Disewa">Disewa</option>
-                </select>
-            </div>
+    <div class="field">
+        <label for="status">Status Ketersediaan</label>
 
-            <a href="/mobil" class="btn-batal">Batal</a>
-<button type="submit" class="btn-simpan">
-    Simpan
-</button>
-            </div>
+        <select
+            id="status"
+            name="status"
+        >
+            <option value="Tersedia">Tersedia</option>
+            <option value="Disewa">Disewa</option>
+        </select>
+    </div>
 
-        </form>
+    <div class="actions">
+        <a href="{{ route('mobil.index') }}" class="btn-batal">
+            Batal
+        </a>
+
+        <button type="submit" class="btn-simpan">
+            Simpan
+        </button>
+    </div>
+</form>
     </div>
 
 </body>
