@@ -1,12 +1,21 @@
 <?php
 
-echo "Step 1: PHP OK<br>";
-
 require __DIR__ . '/../vendor/autoload.php';
-echo "Step 2: Autoload OK<br>";
-
 $app = require_once __DIR__ . '/../bootstrap/app.php';
-echo "Step 3: App bootstrap OK<br>";
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-echo "Step 4: Kernel OK<br>";
+try {
+    $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+    $request = Illuminate\Http\Request::capture();
+    $response = $kernel->handle($request);
+
+    echo "STATUS: " . $response->getStatusCode() . "<br>";
+    echo "CONTENT LENGTH: " . strlen($response->getContent()) . "<br>";
+    echo "CONTENT: " . htmlspecialchars($response->getContent());
+
+} catch (\Throwable $e) {
+    echo "ERROR CAUGHT:<br>";
+    echo "Message: " . $e->getMessage() . "<br>";
+    echo "File: " . $e->getFile() . "<br>";
+    echo "Line: " . $e->getLine() . "<br>";
+    echo "<pre>" . $e->getTraceAsString() . "</pre>";
+}
