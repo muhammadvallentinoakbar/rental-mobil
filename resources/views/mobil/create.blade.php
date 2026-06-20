@@ -213,17 +213,10 @@
                 </select>
             </div>
 
-            <div class="actions">
-                <a href="/mobil" class="btn-batal">Batal</a>
-                <button type="submit" onclick="showSuccess()">
-                    Simpan
-                </button>
-                <script>
-            function simpanData() {
-                alert('Data mobil berhasil disimpan!');
-                return true;
-            }
-            </script>
+            <a href="/mobil" class="btn-batal">Batal</a>
+<button type="submit" class="btn-simpan">
+    Simpan
+</button>
             </div>
 
         </form>
