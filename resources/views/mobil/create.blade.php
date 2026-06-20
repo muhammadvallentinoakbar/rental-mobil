@@ -180,9 +180,8 @@
             <p>Lengkapi data unit armada baru di bawah ini.</p>
         </div>
 
-        <form action="/mobil-test" method="POST">
+        <form action="/mobil" method="POST">
     @csrf
-
     <div class="field">
         <label for="nama_mobil">Nama Mobil</label>
         <input
