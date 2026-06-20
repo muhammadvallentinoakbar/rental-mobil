@@ -214,7 +214,8 @@
             </div>
 
             <div class="actions">
-                <a href="/mobil" class="btn-batal">Batal</a>
+                <a href="/" class="btn-batal">Batal</a>
+                
                 <button type="submit" onclick="showSuccess()">
                     Simpan
                 </button>
